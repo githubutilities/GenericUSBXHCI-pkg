@@ -1,0 +1,58 @@
+#!/bin/sh
+#
+# $1: the full path to the installation package; for example:
+# /Volumes/Projects/Testing/Simple_Carbon_App.pkg
+#
+# $2: the full path to the installation destination; for example:
+# /Applications
+#
+# $3: the mountpoint of the destination volume; for example:
+# / or /Volumes/External_Drive
+# 
+# $4: the root directory for the current System folder:
+# /
+
+echo "postinstall: Path to installer....... $1"
+echo "postinstall: Path to destination..... $2"
+echo "postinstall: Path to dest volume..... $3"
+echo "postinstall: Root of system folder... $4"
+
+#############################################
+############### Start script ################
+#############################################
+
+### Backup kext ###
+
+DATE=`date -j +%F-%Hh%M`
+
+BACKUP_DIRECTORY="${3}"/Backup\ Extensions/net.osx86.kexts.GenericUSBXHCI/$DATE
+SYSTEM_EXTENSION_DIRECTORY="${3}"/System/Library/Extensions
+EXTRA_EXTENSION_DIRECTORY="${3}"/Extra/Extensions
+
+for i in GenericUSBXHCI PXHCD; do
+
+	if [ -e "${SYSTEM_EXTENSION_DIRECTORY}"/$i.kext ]; then
+		if [ -n "${BACKUP_DIRECTORY}" ]; then
+			echo "creating Backup Directory..."
+			mkdir -p "${BACKUP_DIRECTORY}"
+		fi
+		cp -R "${SYSTEM_EXTENSION_DIRECTORY}"/$i.kext "${BACKUP_DIRECTORY}"
+		rm -R "${SYSTEM_EXTENSION_DIRECTORY}"/$i.kext
+	fi
+
+	if [ -e "${EXTRA_EXTENSION_DIRECTORY}"/$i.kext ]; then
+		if [ -n "${BACKUP_DIRECTORY}" ]; then
+				echo "creating Backup Directory..."
+				mkdir -p "${BACKUP_DIRECTORY}"
+		fi
+		cp -R "${EXTRA_EXTENSION_DIRECTORY}"/$i.kext "${BACKUP_DIRECTORY}"
+		rm -R "${EXTRA_EXTENSION_DIRECTORY}"/$i.kext
+	fi
+
+done
+
+#############################################
+############### Finish script ###############
+#############################################
+
+exit 0

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<installer-gui-script minSpecVersion="1">
+    <title>GenericUSBXHCI</title>
+    <pkg-ref id="net.osx86.kexts.GenericUSBXHCI">
+        <bundle-version>
+            <bundle CFBundleShortVersionString="1.2.8d9" CFBundleVersion="1.2.8d9" id="net.osx86.kexts.GenericUSBXHCI" path="./System/Library/Extensions/GenericUSBXHCI.kext"/>
+        </bundle-version>
+    </pkg-ref>
+    <options customize="never" allow-external-scripts="no"/>
+    
+    <domains enable_anywhere="true"/>
+    
+    <choices-outline>
+        <line choice="default">
+            <line choice="net.osx86.kexts.GenericUSBXHCI"/>
+        </line>
+    </choices-outline>
+    <choice id="default"/>
+    <choice id="net.osx86.kexts.GenericUSBXHCI" visible="false">
+        <pkg-ref id="net.osx86.kexts.GenericUSBXHCI"/>
+    </choice>
+    <pkg-ref id="net.osx86.kexts.GenericUSBXHCI" version="1" onConclusion="none" installKBytes="160">#GenericUSBXHCI.pkg</pkg-ref>
+</installer-gui-script>

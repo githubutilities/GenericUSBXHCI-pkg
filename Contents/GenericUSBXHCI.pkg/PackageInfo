@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<pkg-info overwrite-permissions="true" relocatable="false" identifier="net.osx86.kexts.GenericUSBXHCI" postinstall-action="none" version="1" format-version="2" generator-version="InstallCmds-403 (13E28)" install-location="/" auth="root">
+    <payload numberOfFiles="13" installKBytes="160"/>
+    <bundle path="./System/Library/Extensions/GenericUSBXHCI.kext" id="net.osx86.kexts.GenericUSBXHCI" CFBundleShortVersionString="1.2.8d9" CFBundleVersion="1.2.8d9"/>
+
+    <bundle-version>
+        <bundle id="net.osx86.kexts.GenericUSBXHCI"/>
+    </bundle-version>
+    <upgrade-bundle>
+        <bundle id="net.osx86.kexts.GenericUSBXHCI"/>
+    </upgrade-bundle>
+
+    <update-bundle/>
+    <atomic-update-bundle/>
+    <scripts>
+        <preinstall file="./preinstall"/>
+    </scripts>
+</pkg-info>
